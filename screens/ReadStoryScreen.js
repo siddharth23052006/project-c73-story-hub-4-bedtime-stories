@@ -10,7 +10,7 @@ export default class ReadStoryScreen extends React.Component{
           backgroundColor={'#FF0038'}
           centerComponent={{
             text:'Story Hub',
-            style:{color:'#EEE', fontSize:20}
+            style:{color:'#EEE', fontSize:20, fontWeight:'bold'}
           }}
         />
         <View style = {{alignItems:'center'}}>
