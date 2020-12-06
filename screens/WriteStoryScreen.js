@@ -1,8 +1,7 @@
 import React from 'react';
-import {Text, View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, TextInput, StyleSheet, TouchableOpacity, KeyboardAvoidingView, ToastAndroid} from 'react-native';
 import {Header} from 'react-native-elements';
 import db from '../Config';
-import firebase from 'firebase';
 
 export default class WriteStorySceen extends React.Component{
   constructor(){
@@ -24,11 +23,15 @@ export default class WriteStorySceen extends React.Component{
       AuthorName: this.state.authorName,
       Story: this.state.story
     });
-    
+    ToastAndroid.show('Story Submitted', ToastAndroid.SHORT);
   }
 
   render(){
     return(
+      <KeyboardAvoidingView
+        style = {{flex:1, justifyContent: 'center', alignItems: 'center'}}
+        behavior = {"padding"}
+        enabled>
       <View style = {{flex: 1, backgroundColor:'#FFEFEF'}}>
         <Header
           backgroundColor={'#FF0038'}
@@ -69,6 +72,7 @@ export default class WriteStorySceen extends React.Component{
           <Text style = {styles.submitTextStyle}>SUBMIT</Text>
         </TouchableOpacity>
       </View>
+      </KeyboardAvoidingView>
     );
   }
 }
