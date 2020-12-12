@@ -29,10 +29,9 @@ export default class WriteStorySceen extends React.Component{
   render(){
     return(
       <KeyboardAvoidingView
-        style = {{flex:1, justifyContent: 'center', alignItems: 'center'}}
+        style = {{backgroundColor:'#FFEFEF', flex:1}}
         behavior = {"padding"}
         enabled>
-      <View style = {{flex: 1, backgroundColor:'#FFEFEF'}}>
         <Header
           backgroundColor={'#FF0038'}
           centerComponent={{
@@ -71,8 +70,8 @@ export default class WriteStorySceen extends React.Component{
           onPress = {()=>{this.submitStory()}}>
           <Text style = {styles.submitTextStyle}>SUBMIT</Text>
         </TouchableOpacity>
-      </View>
-      </KeyboardAvoidingView>
+        </KeyboardAvoidingView>
+      
     );
   }
 }
@@ -90,7 +89,6 @@ const styles = StyleSheet.create({
     alignItems:'center',
     margin:30,
     justifyContent:'center'
-
   },
   submitTextStyle:{
     color:'#EEE',
