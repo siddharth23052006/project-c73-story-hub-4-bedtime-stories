@@ -3,7 +3,7 @@ import {Text, View, TextInput, StyleSheet, TouchableOpacity} from 'react-native'
 import {Header} from 'react-native-elements';
 import db from '../Config';
 
-export default class ReadStoryScreen extends React.Component{
+export default class ReadStoryScreen extends React.Component{z
   render(){
     return(
       <View style = {{flex: 1, backgroundColor:'#FFEFEF'}}>
@@ -15,7 +15,7 @@ export default class ReadStoryScreen extends React.Component{
           }}
         />
         <View style = {{alignItems:'center'}}>
-          <TouchableOpacity style = {readStoryTextButtonStyle}>
+          <TouchableOpacity style = {styles.readStoryTextButtonStyle}>
             <Text style = {styles.readStoryTextStyle}>Read Story</Text>
           </TouchableOpacity>
         </View>
