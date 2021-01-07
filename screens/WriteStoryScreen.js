@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   authorTitleInputStyle:{
     width:'70%',
-    height:'5%',
+    height:40,
     alignSelf:'center',
     borderWidth:1.5,
     fontSize:20,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   storyInput:{
     width:'70%',
-    height:'30%',
+    height:250,
     alignSelf:'center',
     borderWidth:1.5,
     fontSize:20,

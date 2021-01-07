@@ -1,9 +1,40 @@
 import React from 'react';
-import {Text, View, TextInput, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, TextInput, StyleSheet, TouchableOpacity, ScrollView} from 'react-native';
 import {Header} from 'react-native-elements';
 import db from '../Config';
 
-export default class ReadStoryScreen extends React.Component{z
+export default class ReadStoryScreen extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+      storiesInDB:[],
+      search:'',
+      searchResults:[]
+    }
+  }
+
+  retrieveStories = async()=>{
+    var allStories = db.collection("stories").where("Title", "!=", "").get();
+    var allStoriesData = allStories.data();
+    console.log(allStoriesData);
+    this.setState({storiesInDB:allStoriesData});
+  }
+
+  searchFilter = async(searchInput)=>{
+    console.log("Search Filter function is called")
+    if (searchInput!=''){
+      var results = this.state.storiesInDB.where("Title","==", searchInput).get();
+      var resultsData = results.data()
+      this.setState({searchResults:resultsData});
+    }
+    else{
+      this.setState({searchResults:this.state.storiesInDB});
+    }
+  }
+
+  componentDidMount(){
+    this.retrieveStories;
+  }
   render(){
     return(
       <View style = {{flex: 1, backgroundColor:'#FFEFEF'}}>
@@ -15,9 +46,18 @@ export default class ReadStoryScreen extends React.Component{z
           }}
         />
         <View style = {{alignItems:'center'}}>
-          <TouchableOpacity style = {styles.readStoryTextButtonStyle}>
-            <Text style = {styles.readStoryTextStyle}>Read Story</Text>
-          </TouchableOpacity>
+          <TextInput
+            style = {styles.searchText}
+            placeholder = "Search for a story title"
+            onChangeText = {search=>{
+              this.searchFilter(search);
+              this.setState({search:search});
+              console.log(this.state.search);
+            }}
+            value = {this.state.search}/>
+          <ScrollView>
+            {this.state.searchResults}
+          </ScrollView>
         </View>
       </View>
     );
@@ -25,22 +65,14 @@ export default class ReadStoryScreen extends React.Component{z
 }
 
 const styles = StyleSheet.create({
-  readStoryTextButtonStyle:{
+  searchText:{
+    height:35,
+    width:'70%',
+    borderWidth:1.5,
     alignSelf:'center',
-    width:100,
-    height:30,
-    borderRadius:15,
-    backgroundColor:'#FF0038',
-    borderColor:'#000',
-    borderWidth:1,
-    alignContent:'center',
-    alignItems:'center',
-    margin:30,
-    justifyContent:'center'
-  },
-  readStoryTextStyle:{
-    color:'#EEE',
-    fontSize:18,
-    fontWeight:'bold'
+    borderWidth:1.5,
+    fontSize:20,
+    backgroundColor:'#FFF',
+    margin:20
   }
 });
